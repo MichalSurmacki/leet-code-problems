@@ -1,0 +1,19 @@
+{
+  "name": "leet-code-problems",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichalSurmacki/leet-code-problems.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/MichalSurmacki/leet-code-problems/issues"
+  },
+  "homepage": "https://github.com/MichalSurmacki/leet-code-problems#readme",
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
