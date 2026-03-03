@@ -66,6 +66,34 @@ function addTwoNumbersRecursion(
   return solution;
 }
 
+function addTwoNumbersIteratively(
+  l1: ListNode | null,
+  l2: ListNode | null,
+): ListNode | null {
+  let solution = new ListNode();
+  let head = solution;
+
+  let l1next = l1;
+  let l2next = l2;
+  let toTransfer = 0;
+
+  while (l1next || l2next || toTransfer) {
+    const value = (l1next?.val ?? 0) + (l2next?.val ?? 0) + toTransfer;
+    head.val = value % 10;
+    toTransfer = value >= 10 ? 1 : 0;
+
+    if (l1next?.next || l2next?.next || toTransfer) {
+      const next = new ListNode();
+      head.next = next;
+      head = next;
+    }
+    l1next = l1next?.next ?? null;
+    l2next = l2next?.next ?? null;
+  }
+
+  return solution;
+}
+
 const prepareLinkedList = (arr: number[]): ListNode => {
   let first: ListNode = new ListNode(arr[0]);
   let head = first;
@@ -94,8 +122,8 @@ const getListNodeString = (list: ListNode): string => {
 };
 
 const tests = [
-  // { l1: [2, 4, 3], l2: [5, 6, 4] },
-  // { l1: [0], l2: [0] },
+  { l1: [2, 4, 3], l2: [5, 6, 4] },
+  { l1: [0], l2: [0] },
   { l1: [9, 9, 9, 9, 9, 9, 9], l2: [9, 9, 9, 9] },
 ];
 
@@ -105,7 +133,10 @@ tests.forEach((test) => {
   console.log(`l1: ${getListNodeString(l1)}`);
   console.log(`l2: ${getListNodeString(l2)}`);
 
-  const solution = addTwoNumbersRecursion(l1, l2);
-  console.log(`s : ${solution ? getListNodeString(solution) : "null"}`);
+  const solutionR = addTwoNumbersRecursion(l1, l2);
+  console.log(`sr: ${solutionR ? getListNodeString(solutionR) : "null"}`);
+  const solutionI = addTwoNumbersIteratively(l1, l2);
+  console.log(`si: ${solutionI ? getListNodeString(solutionI) : "null"}`);
+
   console.log("******");
 });
